@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adoncia — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ===== EDIT YOUR COLOURS HERE ===== */
+:root{--paper:#f4efe3;--ink:#1c1b1a;--teal:#0e8c86;--yellow:#f2b632;
+--ease:cubic-bezier(.2,.8,.2,1);--d:'Bowlby One','Arial Black',sans-serif;--m:'Space Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:400 15px/1.65 var(--m);overflow-x:hidden;
+background-image:radial-gradient(rgba(14,140,134,.13) 1px,transparent 1.4px);background-size:7px 7px}
+a{color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+section{padding:84px 0;position:relative}
+h2{font:400 clamp(38px,11vw,84px)/.95 var(--d);text-transform:uppercase;margin-bottom:28px}
+h2 span{color:var(--teal);mix-blend-mode:multiply}
+.tag{display:inline-block;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:2px solid var(--ink);padding:2px 9px;margin-bottom:16px}
+.btn{font:700 14px var(--m);text-transform:uppercase;letter-spacing:.08em;text-decoration:none;padding:14px 22px;border:3px solid var(--ink);background:var(--yellow);color:var(--ink);box-shadow:5px 5px 0 var(--ink);cursor:pointer;display:inline-block;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn:hover,.btn:focus-visible{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.btn.t{background:var(--teal);color:var(--paper)}
+.btn.w{background:var(--paper)}
+
+/* opening */
+#intro{position:fixed;inset:0;z-index:100;background:var(--paper);display:grid;place-items:center;overflow:hidden}
+#intro .c{position:absolute;left:50%;top:50%;width:30px;height:30px;margin:-15px;border-radius:50%;background:var(--teal);transform:scale(0);animation:grow 1.5s var(--ease) .1s forwards}
+#intro .c2{background:var(--yellow);animation-delay:.3s;mix-blend-mode:multiply}
+#intro b{position:relative;font:400 clamp(40px,14vw,110px) var(--d);color:var(--paper);opacity:0;animation:pop .6s var(--ease) .7s forwards}
+#intro.out{animation:fade .5s ease forwards}
+#skip{position:absolute;right:16px;bottom:16px;z-index:2;font:700 12px var(--m);background:none;border:2px solid var(--ink);padding:6px 12px;cursor:pointer;text-transform:uppercase}
+@keyframes grow{to{transform:scale(90)}}
+@keyframes pop{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:0;visibility:hidden}}
+
+/* landing */
+#top{min-height:100svh;display:flex;align-items:center;padding:40px 0}
+.mono{width:min(46vw,190px);display:block;margin-bottom:22px;cursor:pointer;transition:transform .6s var(--ease)}
+h1{font:400 clamp(52px,17.5vw,170px)/.88 var(--d);text-transform:uppercase;color:var(--ink);text-shadow:4px 4px 0 var(--yellow);margin-left:-3px;word-break:break-all}
+.tagline{font-size:clamp(17px,4.6vw,22px);font-weight:700;max-width:520px;margin:22px 0 10px}
+.now{font-style:italic;margin-bottom:30px}
+.now:before{content:"";display:inline-block;width:10px;height:10px;background:var(--teal);border-radius:50%;margin-right:8px}
+.btns{display:flex;gap:16px;flex-wrap:wrap}
+
+/* about */
+.about{display:grid;gap:26px}
+.about p{max-width:560px}
+.about p:first-child:first-letter{font:400 64px/.8 var(--d);float:left;color:var(--teal);padding:6px 10px 0 0}
+.note{background:var(--yellow);border:3px solid var(--ink);padding:18px;transform:rotate(-2deg);max-width:300px;font-weight:700;box-shadow:6px 6px 0 var(--teal)}
+@media(min-width:760px){.about{grid-template-columns:1.6fr 1fr;align-items:start}.note{margin-top:60px}}
+
+/* skills */
+#skills{background:var(--teal);color:var(--paper)}
+#skills h2 span{color:var(--yellow);mix-blend-mode:normal}
+.lv{display:grid;gap:30px}
+.lv h3{font:400 24px var(--d);color:var(--yellow);margin-bottom:10px;text-transform:uppercase}
+.lv ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.lv li{border:2px solid var(--paper);padding:4px 12px;font-weight:700;border-radius:99px}
+.lv li:nth-child(2n){transform:rotate(1.5deg)}.lv li:nth-child(3n){transform:rotate(-1.5deg)}
+.lv .l li{border-style:dashed}
+@media(min-width:760px){.lv{grid-template-columns:repeat(3,1fr)}}
+
+/* journey */
+.tl{border-left:4px solid var(--ink);margin-left:8px;padding-left:24px}
+.tl div{position:relative;margin-bottom:38px;max-width:560px}
+.tl div:before{content:"";position:absolute;left:-36px;top:5px;width:20px;height:20px;border:4px solid var(--ink);background:var(--yellow);border-radius:50%}
+.tl div:nth-child(2):before{background:var(--teal)}.tl div:nth-child(3):before{background:var(--paper)}
+.tl h3{font:400 26px var(--d);text-transform:uppercase;margin-bottom:6px}
+.tl small{font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+
+/* beyond */
+.facts{display:grid;gap:18px}
+.facts p{border:3px solid var(--ink);padding:18px;background:var(--paper);box-shadow:6px 6px 0 var(--yellow)}
+.facts p:nth-child(2){background:var(--yellow);box-shadow:6px 6px 0 var(--teal);margin-left:22px}
+.facts p:nth-child(3){transform:rotate(-1deg)}
+@media(min-width:760px){.facts{grid-template-columns:1fr 1.3fr 1fr;align-items:start}.facts p:nth-child(2){margin:40px 0 0}}
+
+/* contact */
+#contact{background:var(--ink);color:var(--paper)}
+#contact h2 span{color:var(--yellow);mix-blend-mode:normal}
+.links{display:grid;gap:14px;margin-top:10px}
+.links a{font:400 clamp(22px,6.5vw,44px)/1.1 var(--d);text-decoration:none;text-transform:uppercase;border-bottom:3px solid var(--teal);padding-bottom:6px;display:flex;justify-content:space-between;transition:color .25s,padding .3s var(--ease)}
+.links a:hover{color:var(--yellow);padding-left:12px}
+footer{text-align:center;font-size:12px;padding:20px;background:var(--ink);color:#8f8a80}
+
+/* wrapped */
+#story{position:fixed;inset:0;z-index:90;display:none;touch-action:manipulation}
+#story.on{display:block}
+.card{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:70px 26px 50px;opacity:0;transform:scale(1.04);transition:opacity .45s var(--ease),transform .6s var(--ease);pointer-events:none}
+.card.a{opacity:1;transform:none}
+.card small{font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px}
+.card .big{font:400 clamp(46px,18vw,140px)/.9 var(--d);text-transform:uppercase;max-width:900px}
+.card p{margin-top:20px;font-size:17px;font-weight:700;max-width:480px}
+.bars{position:absolute;top:14px;left:14px;right:14px;display:flex;gap:5px;z-index:3}
+.bars i{flex:1;height:5px;background:rgba(28,27,26,.25);overflow:hidden}
+.bars i b{display:block;height:100%;width:0;background:var(--ink)}
+.bars i.d b{width:100%}
+.bars i.r b{animation:fill 5s linear forwards}
+@keyframes fill{to{width:100%}}
+#close{position:absolute;top:28px;right:16px;z-index:4;font:700 12px var(--m);background:var(--paper);border:2px solid var(--ink);padding:4px 10px;cursor:pointer;text-transform:uppercase}
+#tl,#tr{position:absolute;top:60px;bottom:0;width:40%;z-index:2;background:none;border:0;cursor:pointer}
+#tl{left:0}#tr{right:0;width:60%}
+.ach{position:fixed;left:50%;bottom:30px;z-index:120;transform:translate(-50%,160%);transition:transform .7s var(--ease);width:min(92vw,380px);background:var(--yellow);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--teal);padding:14px 16px;display:flex;gap:14px;align-items:center}
+.ach.show{transform:translate(-50%,0)}
+.ach svg{flex:none;width:44px}
+.ach b{font:400 18px var(--d);text-transform:uppercase;display:block}
+.ach span{font-size:13px;font-weight:700}
+
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-delay:0s!important;transition-duration:.01s!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div id="intro" aria-hidden="true"><i class="c"></i><i class="c c2"></i><b>Hi.</b><button id="skip">Skip</button></div>
+
+<header id="top"><div class="wrap">
+<svg class="mono" id="mono" viewBox="0 0 200 200" role="img" aria-label="Monogram: A">
+<circle cx="86" cy="100" r="74" fill="#0e8c86" style="mix-blend-mode:multiply"/>
+<circle cx="120" cy="100" r="74" fill="#f2b632" style="mix-blend-mode:multiply"/>
+<text x="100" y="138" text-anchor="middle" font-family="Bowlby One,Arial Black,sans-serif" font-size="108" fill="#1c1b1a">A</text></svg>
+<h1>Adoncia</h1>
+<!-- EDIT: tagline + currently -->
+<p class="tagline">First-year IT student who learns by building small things and breaking them on purpose.</p>
+<p class="now">currently: getting comfortable with JavaScript</p>
+<div class="btns"><a class="btn" href="#about">Explore</a><a class="btn t" href="#contact">Say hi</a><button class="btn w" id="play">Play my Wrapped</button></div>
+</div></header>
+
+<section id="about"><div class="wrap">
+<span class="tag">01 — About</span><h2>Hello, <span>I'm A.</span></h2>
+<!-- EDIT: write your real story from your Me-Map -->
+<div class="about"><div>
+<p>I'm Adoncia, and I'm in my first year of B.Tech in Information Technology. I came in curious about how the apps I use every day are actually made, and that curiosity hasn't gone away yet.</p><br>
+<p>I'm still early, and I like it that way. Every week something I didn't understand starts to make sense, and I write it down so I remember how it felt to not know.</p></div>
+<div class="note">Rule I live by: if it works, find out why.</div></div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+<span class="tag" style="border-color:var(--paper)">02 — Skills</span><h2>What I <span>know</span></h2>
+<!-- EDIT: be honest -->
+<div class="lv">
+<div class="rv"><h3>Comfortable</h3><ul><li>HTML</li><li>CSS</li><li>Basic C</li></ul></div>
+<div class="rv"><h3>Learning</h3><ul><li>JavaScript</li><li>Python</li><li>Git</li></ul></div>
+<div class="rv l"><h3>Curious about</h3><ul><li>Databases</li><li>Design</li><li>Cybersecurity</li></ul></div>
+</div></div></section>
+
+<section id="journey"><div class="wrap">
+<span class="tag">03 — Journey</span><h2>Made. <span>Making.</span> Next.</h2>
+<!-- EDIT: your real projects -->
+<div class="tl">
+<div class="rv"><small>Made</small><h3>This portfolio</h3><p>One file, no images, every shape drawn in code. My first proper front-end build.</p></div>
+<div class="rv"><small>Learning</small><h3>Programming basics</h3><p>Loops, functions, and the habit of reading error messages before panicking.</p></div>
+<div class="rv"><small>Want to build</small><h3>Something people use</h3><p>A small app that solves a real problem for someone on my campus.</p></div>
+</div></div></section>
+
+<section id="beyond"><div class="wrap">
+<span class="tag">04 — Beyond code</span><h2>The <span>real</span> me</h2>
+<!-- EDIT: hobbies and fun facts -->
+<div class="facts">
+<p class="rv"><b>Hobby</b><br>Doodling in the margins of my notebooks.</p>
+<p class="rv"><b>Fun fact</b><br>I picked these colours before I knew what the project would be.</p>
+<p class="rv"><b>Soft spot</b><br>Posters that look printed by hand.</p>
+</div></div></section>
+
+<section id="contact"><div class="wrap">
+<span class="tag" style="border-color:var(--paper)">05 — Contact</span><h2>Say <span>hi.</span></h2>
+<!-- EDIT: your real links -->
+<div class="links">
+<a href="mailto:you@example.com">Email <span>→</span></a>
+<a href="https://linkedin.com/in/your-name" target="_blank" rel="noopener">LinkedIn <span>→</span></a>
+<a href="https://github.com/your-name" target="_blank" rel="noopener">GitHub <span>→</span></a></div>
+</div></section>
+<footer>Printed in two colours. Hand-built in 2026.</footer>
+
+<div id="story" role="dialog" aria-label="My Wrapped"><div class="bars" id="bars"></div><button id="close">Close</button><div id="cards"></div><button id="tl" aria-label="Previous"></button><button id="tr" aria-label="Next"></button></div>
+
+<div class="ach" id="ach" role="status"><svg viewBox="0 0 44 44"><circle cx="17" cy="22" r="15" fill="#0e8c86"/><circle cx="27" cy="22" r="15" fill="#f1efe6" style="mix-blend-mode:multiply"/><path d="M14 22l6 6 11-12" stroke="#1c1b1a" stroke-width="4" fill="none"/></svg><div><b id="at">Achievement unlocked</b><span id="ad">Finished my Wrapped</span></div></div>
+
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)};
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* opening: once, <2.5s, skippable */
+var intro=$('#intro'),seen=false;
+try{seen=sessionStorage.getItem('seen')}catch(e){}
+function endIntro(){intro.classList.add('out');setTimeout(function(){intro.remove()},600);try{sessionStorage.setItem('seen','1')}catch(e){}}
+if(seen||reduce){intro.remove()}else{var t=setTimeout(endIntro,2300);$('#skip').onclick=function(){clearTimeout(t);endIntro()}}
+
+/* reveal on scroll */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.rv').forEach(function(n){io.observe(n)});
+
+/* achievement toast */
+var tt;function toast(a,b){$('#at').textContent=a;$('#ad').textContent=b;var el=$('#ach');el.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){el.classList.remove('show')},4000)}
+
+/* easter egg: tap the monogram 5 times */
+var n=0,deg=0;$('#mono').onclick=function(){n++;deg+=72;this.style.transform='rotate('+deg+'deg)';if(n===5){n=0;toast('Misprint found','You tapped the monogram 5 times')}};
+
+/* wrapped stories — EDIT the cards */
+var cards=[
+{bg:'#0e8c86',fg:'#f4efe3',s:'Your year so far',b:'Year one.',p:'First-year B.Tech IT. Everything is new.'},
+{bg:'#f2b632',fg:'#1c1b1a',s:'Top skill, still growing',b:'HTML + CSS',p:'Comfortable here. Always tweaking spacing.'},
+{bg:'#1c1b1a',fg:'#f2b632',s:'Currently learning',b:'JavaScript',p:'Loops, functions, and a lot of console.log.'},
+{bg:'#f4efe3',fg:'#0e8c86',s:'Beyond code',b:'Doodles.',p:'Notebook margins have seen things.'},
+{bg:'#0e8c86',fg:'#f2b632',s:'Up next',b:'Build something real.',p:'Say hi if you want to build it with me.'}
+],cur=-1,timer,idx=0;
+var box=$('#cards'),bars=$('#bars');
+cards.forEach(function(c){var d=document.createElement('div');d.className='card';d.style.background=c.bg;d.style.color=c.fg;d.innerHTML='<small>'+c.s+'</small><div class="big">'+c.b+'</div><p>'+c.p+'</p>';box.appendChild(d);bars.appendChild(document.createElement('i')).innerHTML='<b></b>'});
+var cs=box.children,bs=bars.children;
+function show(i){clearTimeout(timer);
+if(i<0)i=0;
+if(i>=cards.length){close();toast('Achievement unlocked','Watched the whole Wrapped');return}
+idx=i;
+for(var k=0;k<cs.length;k++){cs[k].classList.toggle('a',k===i);bs[k].className=k<i?'d':'';}
+bars.style.setProperty('--c',cards[i].fg);
+for(k=0;k<bs.length;k++)bs[k].firstChild.style.background=cards[i].bg==='#1c1b1a'?'#f2b632':'#1c1b1a';
+void bs[i].offsetWidth;bs[i].className='r';
+if(!reduce)timer=setTimeout(function(){show(i+1)},5000)}
+function open(){$('#story').classList.add('on');document.body.style.overflow='hidden';show(0)}
+function close(){clearTimeout(timer);$('#story').classList.remove('on');document.body.style.overflow=''}
+$('#play').onclick=open;$('#close').onclick=close;
+$('#tr').onclick=function(){show(idx+1)};$('#tl').onclick=function(){show(idx-1)};
+document.addEventListener('keydown',function(e){if(!$('#story').classList.contains('on'))return;if(e.key==='ArrowRight')show(idx+1);if(e.key==='ArrowLeft')show(idx-1);if(e.key==='Escape')close()});
+})();
+</script>
+</body>
+</html>
